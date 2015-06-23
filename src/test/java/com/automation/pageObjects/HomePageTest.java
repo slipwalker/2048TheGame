@@ -6,6 +6,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import java.util.ArrayList;
 import java.util.List;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 
 /*
@@ -68,5 +70,6 @@ public class HomePageTest extends TestBase {
 		log.info("Current score: " + homepage.getScore());
 		log.info("Game is finished.");
 		Assert.assertEquals(homepage.getGameOverMessage(), "Game over!");
+		assertThat("Check message after finishing the game: ", homepage.getGameOverMessage(), equalTo("Game over!"));
 	}
 }
