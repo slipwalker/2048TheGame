@@ -97,7 +97,7 @@ public class HomePage extends Page<HomePage> {
 
     private void initGridColumns() {
         List<GridSquare> gridSquares = getGridSquares();
-        for (int i = 0; i < gridSquares.size(); i = i + gridSizeY) {
+        for (int i = 0; i < gridSquares.size(); i += gridSizeY) {
             List<GridSquare> gridColumn = gridSquares.subList(i, i + gridSizeY);
             switch (i) {
                 case 0: firstColumn = gridColumn; break;
