@@ -38,6 +38,7 @@ public class ExtendedWebDriver implements SearchContext, WebDriver {
     private static final long PULL_UP_INTERVAL_MS = 100;
     private static final String SCREENSHOT_FOLDER = "target/screenshots/";
     private static final String SCREENSHOT_FORMAT = ".png";
+    private static final String CHROME_DRIVER_LOCATION = "src/main/resources/drivers/chrome/chromedriver";
     private final WebDriver browserDriver;
     private final File downloadFolder;
     private final Wait<WebDriver> wait;
@@ -72,6 +73,7 @@ public class ExtendedWebDriver implements SearchContext, WebDriver {
                 readyBrowser = new FirefoxDriver(buildFFCapabilities());
                 break;
             case CHROME:
+                setChromeDriver();
                 readyBrowser = new ChromeDriver();
                 break;
             case IE:
@@ -324,5 +326,11 @@ public class ExtendedWebDriver implements SearchContext, WebDriver {
                 se.printStackTrace();
             }
         }
+    }
+
+    private static void setChromeDriver() {
+        String os = System.getProperty("os.name").toLowerCase().substring(0, 3);
+        String chromeBinary = CHROME_DRIVER_LOCATION + (os.equals("win") ? ".exe" : "");
+        System.setProperty("webdriver.chrome.driver", chromeBinary);
     }
 }
